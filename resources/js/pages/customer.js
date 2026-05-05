@@ -14,6 +14,7 @@ $('#dataRegistro').flatpickr({
     locale: "pt"
 });
 
+
 async function applyChanges() {
     $('button').prop('disabled', true);
     const IsValid = Validate.SetForm('form').Validate();

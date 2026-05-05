@@ -55,5 +55,22 @@ async function ShowModal(id) {
         }
     });
 }
+async function editCustomer(id) {
+    try {
+        const customer = await api.customer.findById(id);
+        if (!customer) {
+            toast('error', 'Erro', 'Cliente não encontrado.');
+            return;
+        }
+        await api.temp.set('customer:edit', { action: 'e', ...customer });
+        api.window.openModal('pages/customer', {
+            width: 800,
+            height: 600,
+            title: 'Editar Cliente',
+        });
+    } catch (err) {
+        toast('error', 'Falha', 'Erro: ' + err.message);
+    }
+}
 
 window.ShowModal = ShowModal;
